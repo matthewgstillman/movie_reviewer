@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Home</title>
+{% endblock%}
+
+
+{% block content %}
+<div class="container">
+    <h3>Time To Review Movies</h3>
+    {% if messages %}
+          {% for message in messages %}
+            {{ message }}
+          {% endfor %}
+      {% endif %}
+    <h2>Not A Member? Create an Account Here</h2>
+    <div class="form-control">
+        <form action="/register" method="POST">
+            {% csrf_token %}
+            <p>First Name: <input type="text" name="first_name"></p>
+            <p>Last Name: <input type="text" name="last_name"></p>
+            <p>Username: <input type="text" name="username"></p>
+            <p>Password: <input type="password" name="password"></p>
+            <p>PW Confirm: <input type="password" name="pw_confirm"></p>
+            <input type="submit" value="submit" name="submit">
+        </form>
+    </div>
+    <br>
+    <h2>Already A Member? Login Below</h2>
+    <div class="form-control">
+        <form action="/login" method="POST">
+            {% csrf_token %}
+            <p>Username: <input type="text" name="username"></p>
+            <p>Password: <input type="password" name="password"></p>
+            <input type="submit" value="submit" name="submit">
+        </form>
+        <br>
+    </div>
+    <br>
+</div>
+{% endblock %}
