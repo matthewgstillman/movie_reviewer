@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-<title>Reviews</title>
+<title>Review</title>
 {% endblock%}
 
 
@@ -13,17 +13,16 @@
             {{ message }}
           {% endfor %}
       {% endif %}
-    <h2>Reviews</h2>
-    {% for review in movies %}
-        <a href="review/{{ review.id }}"><h1>{{ review.title }} ({{ review.year}})</h1></a>
-        <h5>Genre: {{ review.genre }}</h5>
-        <h5>Director: {{ review.director }}</h5>
-        <h5>Starring {{ review.lead_role_1 }} and {{ review.lead_role_2 }}</h5>
-        {% if review.rating == 0 %}
+        <h1>{{ movie.title }} ({{ movie.year}})</h1>
+        <h5>Genre: {{ movie.genre }}</h5>
+        <h5>Director: {{ movie.director }}</h5>
+        <h5>Starring {{ movie.lead_role_1 }} and {{ movie.lead_role_2 }}</h5>
+        <p>{{ wiki_summary }}</p>
+        {% if movie.rating == 0 %}
         {% load static %}
         <h5>Rating - ZERO STARS - TURKEY ALERT <img class="turkey" src="{% static 'turkey_icon.png' %}" alt="turkey"></h5>
         {% endif %}
-        {% if review.rating == 1 %}
+        {% if movie.rating == 1 %}
         <h5>Rating
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star"></span>
@@ -32,7 +31,7 @@
         <span class="fa fa-star"></span>
         </h5>
         {% endif %}
-        {% if review.rating == 2 %}
+        {% if movie.rating == 2 %}
         <h5>Rating
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
@@ -41,7 +40,7 @@
         <span class="fa fa-star"></span>
         </h5>
         {% endif %}
-        {% if review.rating == 3 %}
+        {% if movie.rating == 3 %}
         <h5>Rating
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
@@ -50,7 +49,7 @@
         <span class="fa fa-star"></span>
         </h5>
         {% endif %}
-        {% if review.rating == 4 %}
+        {% if movie.rating == 4 %}
         <h5>Rating
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
@@ -59,7 +58,7 @@
         <span class="fa fa-star"></span>
         </h5>
         {% endif %}
-        {% if review.rating == 5 %}
+        {% if movie.rating == 5 %}
         <h5>Rating
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
@@ -69,11 +68,10 @@
         </h5>
         {% endif %}
         <h5>Review</h5>
-        <p> {{ review.review }}</p>
-        <h5>Reviewed By {{ review.reviewer.first_name }} {{ review.reviewer.last_name }}</h5>
-    <hr>
-    {% endfor %}
+        <p> {{ movie.review }}</p>
+        <h5>Reviewed By {{ movie.reviewer.first_name }} {{ movie.reviewer.last_name }}</h5>
     <a href="/reviews">Go Back To Other Movie Reviews</a>
+    <hr>
     <h1><a href="/movies">Review a Movie - Click Here</a></h1>
     <br>
     <a href="/logout">Logout</a>

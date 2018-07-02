@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect 
-
+import wikipedia
 from .models import User, Movie
 
 # Create your views here.
@@ -67,7 +67,25 @@ def movies(request):
         print("Redirect Motherfucker! Didnt see that coming, did you?")
         return render(request, 'new_movie_reviewer/movies.html')
 
+def review(request, id):
+    movies = Movie.objects.all()
+    movie = Movie.objects.get(id=id)
+    print("Movie Title: " + str(movie.title))
+    users = User.objects.all()
+    wiki_summary = wikipedia.summary(str(movie.title))
+    print(wiki_summary)
+    print("Movie: " + str(movie))
+    context = {
+        'movies': movies,
+        'movie': movie,
+        'users': users,
+        'wiki_summary': wiki_summary,
+    }
+    return render(request, 'new_movie_reviewer/review.html', context)
+
 def reviews(request):
+    wiki_summary = wikipedia.summary("{{ movie.title }}")
+    print(wiki_summary)
     movies = Movie.objects.all()
     users = User.objects.all()
     current_user = User.objects.get(id=request.session['id'])
@@ -75,9 +93,9 @@ def reviews(request):
     context = {
         'current_user': current_user,
         'movies': movies,
-        'users': users
+        'users': users,
+        'wiki_summary': wiki_summary
     }
-    print(movies)
     return render(request, 'new_movie_reviewer/reviews.html', context)
 
 def logout(request):

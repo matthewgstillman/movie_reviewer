@@ -192,14 +192,14 @@ class MovieManager(models.Manager):
         # if not reviewer:
         #     messages.append("Error! Must add a reviewer!")
 
-        reviewer = postData['reviewer']
-        if not reviewer:
-            messages.append("Error! Review must have a reviewer!")
-        print(reviewer)
+        # reviewer = postData['reviewer']
+        # if not reviewer:
+        #     messages.append("Error! Review must have a reviewer!")
+        # print(reviewer)
         
         if not messages:
             print("No Messages!")
-            Movie.objects.create(title=title, year=year, genre=genre, director=director, lead_role_1=lead_role_1, lead_role_2=lead_role_2, rating=rating, review=review, reviewer=reviewer)
+            Movie.objects.create(title=title, year=year, genre=genre, director=director, lead_role_1=lead_role_1, lead_role_2=lead_role_2, rating=rating, review=review, reviewer=current_user)
             print(Movie.objects.all())
             return None
         return messages
