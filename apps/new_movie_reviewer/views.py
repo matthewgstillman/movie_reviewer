@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect 
 import wikipedia
+# from imdb import IMDb
 from .models import User, Movie
 
 # Create your views here.
@@ -71,6 +72,8 @@ def review(request, id):
     movies = Movie.objects.all()
     movie = Movie.objects.get(id=id)
     print("Movie Title: " + str(movie.title))
+    # ia = imdb.IMDb()
+    # s_result = ia.search_movie(str(movie.title))
     users = User.objects.all()
     wiki_review = wikipedia.page(str(movie.title))
     wiki_summary = wikipedia.summary(str(movie.title))
@@ -83,6 +86,7 @@ def review(request, id):
     context = {
         'movies': movies,
         'movie': movie,
+        # 's_result': s_result,
         'users': users,
         # 'wiki_cast': wiki_cast,
         'wiki_image': wiki_image,

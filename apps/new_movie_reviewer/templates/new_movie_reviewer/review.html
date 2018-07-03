@@ -8,15 +8,14 @@
 {% block content %}
 <div class="container">
     <h6>Hello {{ request.session.first_name }}</h6>
+    <h1>{{ s_result }}</h1>
     {% if messages %}
           {% for message in messages %}
             {{ message }}
           {% endfor %}
       {% endif %}
         <h1>{{ movie.title }} ({{ movie.year}})</h1>
-        {% if movie.image %}
         <img src="{{ wiki_image }}" alt="">
-        {% endif%}
         <h5>Genre: {{ movie.genre }}</h5>
         <h5>Director: {{ movie.director }}</h5>
         <h5>Starring {{ movie.lead_role_1 }} and {{ movie.lead_role_2 }}</h5>
