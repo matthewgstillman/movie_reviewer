@@ -72,13 +72,21 @@ def review(request, id):
     movie = Movie.objects.get(id=id)
     print("Movie Title: " + str(movie.title))
     users = User.objects.all()
+    wiki_review = wikipedia.page(str(movie.title))
     wiki_summary = wikipedia.summary(str(movie.title))
-    print(wiki_summary)
+    wiki_image = wiki_review.images[0]
+    print ("Wiki Image: " + str(wiki_image))
+    # wiki_cast = wikipedia.cast(str(movie.title))
     print("Movie: " + str(movie))
+    print("Summary" + str(wiki_summary))
+    # print("Cast: " + str(wiki_cast))
     context = {
         'movies': movies,
         'movie': movie,
         'users': users,
+        # 'wiki_cast': wiki_cast,
+        'wiki_image': wiki_image,
+        'wiki_review': wiki_review,
         'wiki_summary': wiki_summary,
     }
     return render(request, 'new_movie_reviewer/review.html', context)

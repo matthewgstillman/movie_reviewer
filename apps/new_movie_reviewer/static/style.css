@@ -43,6 +43,30 @@ li a{
     color: #F9A01B;
 }
 
+/*#review{
+    text-align: justify;
+    width: 85%;
+}*/
+
+p{
+    text-align: center-justify;
+    width: 80%;
+    margin: 0 auto;
+    padding: 5px auto;
+    background-color: cornsilk; 
+    color: #002B5C;
+    border-radius: 5%;
+}
+
+#review p{
+    text-align: center-justify;
+    width: 80%;
+    margin: 0 auto;
+    background-color: cornsilk; 
+    color: #002B5C;
+    border-radius: 5%;
+}
+
 #subject{
     width: 72%;
     margin: 0 auto;

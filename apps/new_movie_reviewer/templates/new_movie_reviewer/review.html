@@ -14,10 +14,15 @@
           {% endfor %}
       {% endif %}
         <h1>{{ movie.title }} ({{ movie.year}})</h1>
+        {% if movie.image %}
+        <img src="{{ wiki_image }}" alt="">
+        {% endif%}
         <h5>Genre: {{ movie.genre }}</h5>
         <h5>Director: {{ movie.director }}</h5>
         <h5>Starring {{ movie.lead_role_1 }} and {{ movie.lead_role_2 }}</h5>
+        <br>
         <p>{{ wiki_summary }}</p>
+        <br>
         {% if movie.rating == 0 %}
         {% load static %}
         <h5>Rating - ZERO STARS - TURKEY ALERT <img class="turkey" src="{% static 'turkey_icon.png' %}" alt="turkey"></h5>
@@ -68,7 +73,7 @@
         </h5>
         {% endif %}
         <h5>Review</h5>
-        <p> {{ movie.review }}</p>
+        <p class="review"> {{ movie.review }}</p>
         <h5>Reviewed By {{ movie.reviewer.first_name }} {{ movie.reviewer.last_name }}</h5>
     <a href="/reviews">Go Back To Other Movie Reviews</a>
     <hr>
